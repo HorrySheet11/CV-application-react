@@ -5,6 +5,10 @@
   text-align: center;
 }
 
+*{
+  box-sizing: border-box;
+}
+
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -41,3 +45,34 @@
   color: #888;
 }
 
+label{
+  display: block;
+  margin: 1rem 0;
+}
+
+form{
+  width:500px;
+}
+
+fieldset{
+  margin-bottom:2rem;
+  padding:1rem;
+  border-radius:8px;
+  border:1px solid #ccc;
+}
+
+input[type="text"], input[type="email"], input[type="date"]{
+  width:100%;
+  padding:0.5rem;
+  margin-top:0.5rem;
+  border:1px solid #ccc;
+  border-radius:4px;
+  font-size:1rem;
+}
+label{
+  font-weight: bold;
+}
+legend{
+  font-weight: bold;
+  font-size:1.2rem;
+}
