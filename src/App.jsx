@@ -10,6 +10,7 @@ const MyInput = ({
 		value,
 		placeholder,
 		onChange,
+    name
 	}) => {
 		return (
 			<label htmlFor={id}>
@@ -22,24 +23,28 @@ const MyInput = ({
 					value={value}
 					onChange={onChange}
 					placeholder={placeholder}
+          name={name}
 				/>
 			</label>
 		);
 	};
 
 function App() {
-	const [fullName, setFullName] = useState("");
-	const [email, setEmail] = useState("");
-	const [phoneNumber, setPhoneNumber] = useState("");
-	const [schoolName, setSchoolName] = useState("");
-	const [degree, setDegree] = useState("");
-	const [titleOfStudy, setTitleOfStudy] = useState("");
-	const [dateOfStudy, setDateOfStudy] = useState("");
-	const [companyName, setCompanyName] = useState("");
-	const [positionTitle, setPositionTitle] = useState("");
-	const [mainTasks, setMainTasks] = useState("");
-	const [startDate, setStartDate] = useState("");
-	const [endDate, setEndDate] = useState("");
+
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    phoneNumber: '',
+    schoolName: '',
+    degree: '',
+    titleOfStudy: '',
+    dateOfStudy: '',
+    companyName: '',
+    positionTitle: '',
+    mainTasks: '',
+    startDate: '',
+    endDate: ''
+  });
 
 	const [isSubmitted, setIsSubmitted] = useState(false);
 
@@ -48,6 +53,14 @@ function App() {
     alert("Form submitted successfully!");
 		setIsSubmitted(true);
 	};
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setFormData(prevData => ({
+      ...prevData,
+      [name]: value
+    }));
+  }
 
 	return (
 		<>
@@ -68,25 +81,28 @@ function App() {
 							label="Full Name: "
 							id="full-name"
 							type="text"
-							value={fullName}
-							onChange={(e) => setFullName(e.target.value)}
-							placeholder="Full Name"
+							value={formData.fullName}
+              onChange={e=> handleChange(e)}							
+              placeholder="Full Name"
+              name="fullName"
 						/>
 						<MyInput
 							label="Email: "
 							id="email"
 							type="text"
-							value={email}
-							onChange={(e) => setEmail(e.target.value)}
-							placeholder="Email"
+							value={formData.email}
+              onChange={e=> handleChange(e)}							
+              placeholder="Email"
+              name="email"
 						/>
 						<MyInput
 							label="Phone Number: "
 							id="phone-number"
 							type="number"
-							value={phoneNumber}
-							onChange={(e) => setPhoneNumber(e.target.value)}
-							placeholder="Phone Number"
+							value={formData.phoneNumber}
+              onChange={e=> handleChange(e)}							
+              placeholder="Phone Number"
+              name="phoneNumber"
 						/>
 					</fieldset>
 					<fieldset id="educational-info">
@@ -95,33 +111,37 @@ function App() {
 							label="Educational Experience: "
 							id="school"
 							type="text"
-							value={schoolName}
-							onChange={(e) => setSchoolName(e.target.value)}
+							value={formData.schoolName}
+              onChange={e=> handleChange(e)}	
 							placeholder="School Name"
+              name="schoolName"
 						/>
 						<MyInput
 							label="Degree: "
 							id="degree"
 							type="text"
-							value={degree}
-							onChange={(e) => setDegree(e.target.value)}
+							value={formData.degree}
+              onChange={e=> handleChange(e)}	
 							placeholder="Degree"
+              name="degree"
 						/>
 						<MyInput
 							label="Title of Study: "
 							id="title"
 							type="text"
-							value={titleOfStudy}
-							onChange={(e) => setTitleOfStudy(e.target.value)}
+							value={formData.titleOfStudy}
+              onChange={e=> handleChange(e)}	
 							placeholder="Title of Study"
+              name="titleOfStudy"
 						/>
 						<MyInput
 							label="Date of Study: "
 							id="date"
 							type="date"
-							value={dateOfStudy}
-							onChange={(e) => setDateOfStudy(e.target.value)}
+							value={formData.dateOfStudy}
+              onChange={e=> handleChange(e)}	
 							placeholder="Date of Study"
+              name="dateOfStudy"
 						/>
 					</fieldset>
 					<fieldset id="work-experience">
@@ -130,41 +150,46 @@ function App() {
 							label="Company Name: "
 							id="company"
 							type="text"
-							value={companyName}
-							onChange={(e) => setCompanyName(e.target.value)}
+							value={formData.companyName}
+              onChange={e=> handleChange(e)}	
 							placeholder="Company Name"
+              name="companyName"
 						/>
 						<MyInput
 							label="Position Title: "
 							id="position"
 							type="text"
-							value={positionTitle}
-							onChange={(e) => setPositionTitle(e.target.value)}
+							value={formData.positionTitle}
+              onChange={e=> handleChange(e)}	
 							placeholder="Position Title"
+              name="positionTitle"
 						/>
 						<MyInput
 							label="Main Tasks: "
 							id="tasks"
 							type="text"
-							value={mainTasks}
-							onChange={(e) => setMainTasks(e.target.value)}
+							value={formData.mainTasks}
+              onChange={e=> handleChange(e)}	
 							placeholder="Main Tasks"
+              name="mainTasks"
 						/>
 						<MyInput
 							label="Start Date: "
 							id="start-date"
 							type="date"
-							value={startDate}
-							onChange={(e) => setStartDate(e.target.value)}
+							value={formData.startDate}
+              onChange={e=> handleChange(e)}	
 							placeholder="Start Date"
+              name="startDate"
 						/>
 						<MyInput
 							label="End Date: "
 							id="end-date"
 							type="date"
-							value={endDate}
-							onChange={(e) => setEndDate(e.target.value)}
+							value={formData.endDate}
+              onChange={e=> handleChange(e)}	
 							placeholder="End Date"
+              name="endDate"
 						/>
 					</fieldset>
 					<button type="submit">Submit</button>
@@ -172,18 +197,18 @@ function App() {
 			)}
 			{isSubmitted && (
 				<>
-					<p>Full Name: {fullName}</p>
-					<p>Email: {email}</p>
-					<p>Phone Number: {phoneNumber}</p>
-					<p>School Name: {schoolName}</p>
-					<p>Degree: {degree}</p>
-					<p>Title of Study: {titleOfStudy}</p>
-					<p>Date of Study: {dateOfStudy}</p>
-					<p>Company Name: {companyName}</p>
-					<p>Position Title: {positionTitle}</p>
-					<p>Main Tasks: {mainTasks}</p>
-					<p>Start Date: {startDate}</p>
-					<p>End Date: {endDate}</p>
+					<p>Full Name: {formData.fullName}</p>
+					<p>Email: {formData.email}</p>
+					<p>Phone Number: {formData.phoneNumber}</p>
+					<p>School Name: {formData.schoolName}</p>
+					<p>Degree: {formData.degree}</p>
+					<p>Title of Study: {formData.titleOfStudy}</p>
+					<p>Date of Study: {formData.dateOfStudy}</p>
+					<p>Company Name: {formData.companyName}</p>
+					<p>Position Title: {formData.positionTitle}</p>
+					<p>Main Tasks: {formData.mainTasks}</p>
+					<p>Start Date: {formData.startDate}</p>
+					<p>End Date: {formData.endDate}</p>
 				</>
 			)}
 		</>
