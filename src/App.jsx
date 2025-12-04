@@ -50,7 +50,6 @@ function App() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-    alert("Form submitted successfully!");
 		setIsSubmitted(true);
 	};
 
@@ -60,6 +59,10 @@ function App() {
       ...prevData,
       [name]: value
     }));
+  }
+
+  const handleEdit = () => {
+    setIsSubmitted(false);
   }
 
 	return (
@@ -209,6 +212,7 @@ function App() {
 					<p>Main Tasks: {formData.mainTasks}</p>
 					<p>Start Date: {formData.startDate}</p>
 					<p>End Date: {formData.endDate}</p>
+          <button type="button" id="edit" onClick={handleEdit}>Edit</button>
 				</>
 			)}
 		</>
